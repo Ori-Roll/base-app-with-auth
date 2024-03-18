@@ -1,5 +1,5 @@
 import Image from 'next/image';
 
 export default function Home() {
-  return <p>This is a page</p>;
+  return <p className="font-semibold">This is a page</p>;
 }
