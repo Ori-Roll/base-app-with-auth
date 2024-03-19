@@ -4,7 +4,7 @@ import React from 'react';
 
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button/';
 
 type SocialProps = {};
 
@@ -18,13 +18,13 @@ export const Social = (props: SocialProps) => {
   };
 
   return (
-    <div>
+    <>
       <Button onClick={handleGoogleClick}>
         <FcGoogle />
       </Button>
       <Button onClick={handleGithubClick}>
         <FaGithub />
       </Button>
-    </div>
+    </>
   );
 };
