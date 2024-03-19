@@ -1,18 +1,16 @@
 'use client';
 
 import React from 'react';
+import styles from './LoginCardWrapper.module.css';
+
 import {
-  // Card,
+  Card,
+  CardHeader,
   CardContent,
   CardFooter,
-  CardHeader,
-} from '@/components/ui/card';
-import { Card } from '@/components/ui/Card/Card';
-
+} from '@/components/ui/Card/index';
 import { LoginHeader } from '@/components/auth/LoginHeader';
 import { Social } from '@/components/auth/Social';
-
-import styles from './LoginCardWrapper.module.css';
 
 type CardWrapperProps = React.PropsWithChildren<{
   headerLabel: string;
@@ -27,10 +25,11 @@ export const LoginCardWrapper = (props: CardWrapperProps) => {
 
   return (
     <Card className={styles.wrapper}>
-      <CardHeader>
-        <LoginHeader label="Please log in" />
+      <CardHeader className={styles.header}>
+        <LoginHeader label="Log in" />
       </CardHeader>
       <CardContent>{children}</CardContent>
+      <LoginHeader label="Or with" />
       <CardFooter>{showSocial && <Social />}</CardFooter>
     </Card>
   );
