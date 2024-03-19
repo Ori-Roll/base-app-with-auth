@@ -20,7 +20,9 @@ export const InputHeader = React.forwardRef<
         className={`${styles.wrapper} ${sizeModule} ${className}`}
         {...props}
       />
-      <div className={styles.errorMessage}>{errorMessage}</div>
+      {errorMessage && (
+        <div className={styles.errorMessage}>{errorMessage}</div>
+      )}
     </div>
   );
 });

@@ -1,11 +1,47 @@
-import React from 'react';
+'use client';
+
+import React, { useTransition } from 'react';
 import { LoginCardWrapper } from './LoginCardWrapper';
 import { InputBase } from '../ui/InputBaseWrapper/InputBase';
 import { InputHeader } from '../ui/InputHeader/InputHeader';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+import { LoginSchema } from '@/schemas/index';
+import { Button } from '../ui/Button/Button';
+import style from './LoginFrom.module.css';
+import { login } from '@/actions/login';
 
 type LoginFromProps = {};
 
 const LoginFrom = (props: LoginFromProps) => {
+  const form = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = form;
+
+  console.log('error ', errors);
+
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = React.useState<string | undefined>();
+
+  const onSubmit = (data: z.infer<typeof LoginSchema>) => {
+    console.log('Data is: ', data);
+    startTransition(async () => {
+      const response = await login(data);
+      setError(response?.error);
+    });
+  };
+
   return (
     <LoginCardWrapper
       headerLabel="welcome back"
@@ -13,30 +49,53 @@ const LoginFrom = (props: LoginFromProps) => {
       backButtonHref="/auth/register"
       showSocial
     >
-      <InputHeader size="double">Email</InputHeader>
-      <InputBase size="double">
-        <input
-          type="text"
-          style={{
-            width: '100%',
-            backgroundColor: 'none',
-            background: 'transparent',
-            border: 'none',
-          }}
-        />
-      </InputBase>
-      <InputHeader size="double">Password</InputHeader>
-      <InputBase size="double">
-        <input
-          type="text"
-          style={{
-            width: '100%',
-            backgroundColor: 'none',
-            background: 'transparent',
-            border: 'none',
-          }}
-        />
-      </InputBase>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <InputHeader size="double">Email</InputHeader>
+        <InputBase size="double" errorMessage={errors.email?.message}>
+          <input
+            id="email"
+            type="email"
+            style={{
+              width: '100%',
+              backgroundColor: 'none',
+              background: 'transparent',
+              border: 'none',
+            }}
+            disabled={isPending}
+            {...register('email')}
+          />
+        </InputBase>
+        <InputHeader size="double">Password</InputHeader>
+        <InputBase size="double" errorMessage={errors.password?.message}>
+          <input
+            id="password"
+            type="text"
+            style={{
+              width: '100%',
+              backgroundColor: 'none',
+              background: 'transparent',
+              border: 'none',
+            }}
+            disabled={isPending}
+            {...register('password')}
+          />
+        </InputBase>
+        {/*   //TODO: add error message component */}
+        {error && <div>{error}</div>}
+        <Button
+          className={style['submit-button-modifier']}
+          asChild
+          type="submit"
+          variant="secondary"
+          disabled={!!Object.keys(errors).length || isPending}
+        >
+          {!isPending ? (
+            <input type="submit" value="Submit!" />
+          ) : (
+            <div>loading...</div>
+          )}
+        </Button>
+      </form>
     </LoginCardWrapper>
   );
 };

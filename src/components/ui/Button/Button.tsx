@@ -16,29 +16,33 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   asChild?: boolean;
   variant?: Variant;
   size?: Size;
+  disabled?: boolean;
 };
 
 const DEFAULT = 'default';
 const SIZE_DEFAULT = 'size-default';
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
+  (props, ref) => {
+    const {
       className,
       variant = DEFAULT,
       size = SIZE_DEFAULT,
       asChild = false,
-      ...props
-    },
-    ref
-  ) => {
+      ...restProps
+    } = props;
+
+    const { disabled } = props;
+
     const Comp = asChild ? Slot : 'button';
 
     return (
       <Comp
-        className={`${styles['color-theme']} ${styles[variant]} ${styles[size]} ${className}`}
+        className={`${styles['color-theme']} ${styles[variant]} ${
+          styles[size]
+        } ${disabled ? styles.disabled : ''} ${className}`}
         ref={ref}
-        {...props}
+        {...restProps}
       />
     );
   }
