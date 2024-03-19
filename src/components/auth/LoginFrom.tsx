@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useTransition } from 'react';
-import { LoginCardWrapper } from './LoginCardWrapper';
+import { AuthCardWrapper } from './AuthCardWrapper';
 import { InputBase } from '../ui/InputBaseWrapper/InputBase';
 import { InputHeader } from '../ui/InputHeader/InputHeader';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -47,10 +47,10 @@ const LoginFrom = (props: LoginFromProps) => {
   };
 
   return (
-    <LoginCardWrapper
-      headerLabel="welcome back"
-      backButtonLabel="Don't have an account?"
-      backButtonHref="/auth/register"
+    <AuthCardWrapper
+      headerLabel="Please login with your account"
+      bottomOptionButtonLabel="Don't have an account?"
+      bottomOptionHref="/auth/register"
       showSocial
     >
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -100,7 +100,7 @@ const LoginFrom = (props: LoginFromProps) => {
           )}
         </Button>
       </form>
-    </LoginCardWrapper>
+    </AuthCardWrapper>
   );
 };
 

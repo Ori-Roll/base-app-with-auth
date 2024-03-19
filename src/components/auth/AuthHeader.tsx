@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from './LoginHeader.module.css';
+import styles from './AuthHeader.module.css';
 
-type LoginHeaderProps = {
+type AuthHeaderProps = {
   label: string;
 };
 
-export const LoginHeader = (props: LoginHeaderProps) => {
+export const AuthHeader = (props: AuthHeaderProps) => {
   const { label } = props;
 
   return <div className={styles.wrapper}>{label}</div>;
