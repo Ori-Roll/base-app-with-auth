@@ -10,6 +10,15 @@ body,
 
 @layer base {
   :root {
+    --base-size-0: 0.2rem;
+    --base-size-1: 0.4rem;
+    --base-size-2: 0.8rem;
+    --base-size-3: 0.16rem;
+    --base-size-4: 3.2rem;
+    --base-size-8: 6.4rem;
+    --base-size-16: 12.8rem;
+    --base-size-32: 25.6rem;
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
