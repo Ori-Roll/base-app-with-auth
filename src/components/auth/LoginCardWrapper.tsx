@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/Card/index';
 import { LoginHeader } from '@/components/auth/LoginHeader';
 import { Social } from '@/components/auth/Social';
+import Link from 'next/link';
 
 type CardWrapperProps = React.PropsWithChildren<{
   headerLabel: string;
@@ -31,6 +32,11 @@ export const LoginCardWrapper = (props: CardWrapperProps) => {
       <CardContent>{children}</CardContent>
       <LoginHeader label="Or with" />
       <CardFooter>{showSocial && <Social />}</CardFooter>
+      {/* TODO: This should be in footer (and footer should be flex column with change to social buttons flex ) */}
+      <Link
+        href={'./register'}
+        className={styles['no-account-btn']}
+      >{`Don't have an account?`}</Link>
     </Card>
   );
 };

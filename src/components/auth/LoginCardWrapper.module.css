@@ -6,3 +6,12 @@
 .header {
   font-weight: 700;
 }
+
+.no-account-btn {
+  font-size: var(--base-size-2);
+  cursor: pointer;
+  text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  padding: var(--base-size-2) 0;
+}

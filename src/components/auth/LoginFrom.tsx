@@ -27,6 +27,7 @@ const LoginFrom = (props: LoginFromProps) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = form;
 
   console.log('error ', errors);
@@ -35,10 +36,13 @@ const LoginFrom = (props: LoginFromProps) => {
   const [error, setError] = React.useState<string | undefined>();
 
   const onSubmit = (data: z.infer<typeof LoginSchema>) => {
-    console.log('Data is: ', data);
+    setError(undefined);
     startTransition(async () => {
       const response = await login(data);
-      setError(response?.error);
+      if (response?.error) {
+        setError(response?.error);
+        reset();
+      }
     });
   };
 
