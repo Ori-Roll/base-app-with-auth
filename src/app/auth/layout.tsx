@@ -1,15 +1,12 @@
 import React from 'react';
+import styles from './layout.module.css';
 
 type LayoutProps = React.PropsWithChildren<{}>;
 
 const layout = (props: LayoutProps) => {
   const { children } = props;
 
-  return (
-    <div className="h-full flex items-center justify-center bg-slate-500">
-      {children}
-    </div>
-  );
+  return <div className={styles.layout}>{children}</div>;
 };
 
 export default layout;
