@@ -1,0 +1,32 @@
+.single {
+  width: var(--base-size-16);
+}
+
+.double {
+  width: calc(var(--base-size-32) + var(--base-size-1));
+}
+
+.conform {
+  width: 100%;
+}
+
+.wrapper {
+  overflow: hidden;
+  min-height: var(--base-size-2);
+  padding: var(--base-size-1);
+  border: 1px solid #ababab;
+}
+
+.header {
+  font-size: var(--base-size-2);
+  min-height: var(--base-size-2);
+  color: rgb(66, 66, 66);
+  padding: 0 0 0 1px;
+}
+.errorMessage {
+  color: rgb(204, 0, 0);
+  min-height: var(--base-size-1);
+  font-size: var(--base-size-2);
+  margin-top: var(--base-size-0);
+  padding: 0 0 0 1px;
+}
