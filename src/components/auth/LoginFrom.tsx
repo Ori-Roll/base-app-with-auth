@@ -2,8 +2,8 @@
 
 import React, { useTransition } from 'react';
 import { AuthCardWrapper } from './AuthCardWrapper';
-import { InputBase } from '../ui/InputBaseWrapper/InputBase';
-import { InputHeader } from '../ui/InputHeader/InputHeader';
+import { InputBase } from '@/components/ui/InputBaseWrapper/InputBase';
+import { InputHeader } from '@/components/ui/InputHeader/InputHeader';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -11,6 +11,7 @@ import { LoginSchema } from '@/schemas/index';
 import { Button } from '../ui/Button/Button';
 import style from './FromStyleTempMod.module.css';
 import { login } from '@/actions/login';
+import { StringInput } from '../ui/InputsUX/StringInput/StringInput';
 
 type LoginFromProps = {};
 
@@ -54,30 +55,16 @@ const LoginFrom = (props: LoginFromProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputHeader size="double">Email</InputHeader>
         <InputBase size="double" errorMessage={errors.email?.message}>
-          <input
+          <StringInput
             id="email"
-            type="email"
-            style={{
-              width: '100%',
-              backgroundColor: 'none',
-              background: 'transparent',
-              border: 'none',
-            }}
             disabled={isPending}
             {...formRegister('email')}
           />
         </InputBase>
         <InputHeader size="double">Password</InputHeader>
         <InputBase size="double" errorMessage={errors.password?.message}>
-          <input
+          <StringInput
             id="password"
-            type="text"
-            style={{
-              width: '100%',
-              backgroundColor: 'none',
-              background: 'transparent',
-              border: 'none',
-            }}
             disabled={isPending}
             {...formRegister('password')}
           />
