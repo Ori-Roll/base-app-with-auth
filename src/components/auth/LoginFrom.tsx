@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { LoginSchema } from '@/schemas/index';
 import { Button } from '../ui/Button/Button';
-import style from './LoginFrom.module.css';
+import style from './FromStyleTempMod.module.css';
 import { login } from '@/actions/login';
 
 type LoginFromProps = {};
@@ -29,8 +29,6 @@ const LoginFrom = (props: LoginFromProps) => {
     formState: { errors },
     reset,
   } = form;
-
-  console.log('error ', errors);
 
   const [isPending, startTransition] = useTransition();
   const [error, setError] = React.useState<string | undefined>();
@@ -94,7 +92,7 @@ const LoginFrom = (props: LoginFromProps) => {
           disabled={!!Object.keys(errors).length || isPending}
         >
           {!isPending ? (
-            <input type="submit" value="Submit!" />
+            <input type="submit" value="Log in" />
           ) : (
             <div>loading...</div>
           )}
