@@ -24,7 +24,7 @@ const LoginFrom = (props: LoginFromProps) => {
   });
 
   const {
-    register,
+    register: formRegister,
     handleSubmit,
     formState: { errors },
     reset,
@@ -64,7 +64,7 @@ const LoginFrom = (props: LoginFromProps) => {
               border: 'none',
             }}
             disabled={isPending}
-            {...register('email')}
+            {...formRegister('email')}
           />
         </InputBase>
         <InputHeader size="double">Password</InputHeader>
@@ -79,7 +79,7 @@ const LoginFrom = (props: LoginFromProps) => {
               border: 'none',
             }}
             disabled={isPending}
-            {...register('password')}
+            {...formRegister('password')}
           />
         </InputBase>
         {/*   //TODO: add error message component */}

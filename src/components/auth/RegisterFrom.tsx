@@ -11,6 +11,7 @@ import { RegisterSchema } from '@/schemas/index';
 import { Button } from '../ui/Button/Button';
 import { StringInput } from '../ui/InputsUX/StringInput/StringInput';
 import style from './FromStyleTempMod.module.css';
+import { register } from '@/actions/register';
 
 type RegisterFromProps = {};
 
@@ -25,7 +26,7 @@ const RegisterFrom = (props: RegisterFromProps) => {
   });
 
   const {
-    register,
+    register: formRegister,
     handleSubmit,
     formState: { errors },
     reset,
@@ -57,27 +58,24 @@ const RegisterFrom = (props: RegisterFromProps) => {
         <InputBase size="double" errorMessage={errors.name?.message}>
           <StringInput
             id="name"
-            type="text"
             disabled={isPending}
-            {...register('name')}
+            {...formRegister('name')}
           />
         </InputBase>
         <InputHeader size="double">Email</InputHeader>
         <InputBase size="double" errorMessage={errors.email?.message}>
           <StringInput
             id="email"
-            type="email"
             disabled={isPending}
-            {...register('email')}
+            {...formRegister('email')}
           />
         </InputBase>
         <InputHeader size="double">Password</InputHeader>
         <InputBase size="double" errorMessage={errors.password?.message}>
           <StringInput
             id="password"
-            type="text"
             disabled={isPending}
-            {...register('password')}
+            {...formRegister('password')}
           />
         </InputBase>
 
