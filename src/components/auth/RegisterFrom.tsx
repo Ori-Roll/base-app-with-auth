@@ -34,6 +34,9 @@ const RegisterFrom = (props: RegisterFromProps) => {
 
   const [isPending, startTransition] = useTransition();
   const [error, setError] = React.useState<string | undefined>();
+  const [successMessage, setSuccessMessage] = React.useState<
+    string | undefined
+  >();
 
   const onSubmit = (data: z.infer<typeof RegisterSchema>) => {
     setError(undefined);
@@ -42,7 +45,9 @@ const RegisterFrom = (props: RegisterFromProps) => {
       if (response?.error) {
         setError(response?.error);
         reset();
+        return;
       }
+      setSuccessMessage(response.success);
     });
   };
 
@@ -81,6 +86,7 @@ const RegisterFrom = (props: RegisterFromProps) => {
 
         {/*   //TODO: add error message component */}
         {error && <div>{error}</div>}
+        {!!successMessage && <div>{successMessage}</div>}
         <Button
           className={style['submit-button-modifier']}
           asChild
