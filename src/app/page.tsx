@@ -1,4 +1,4 @@
-import { LoginButton } from '@/components/auth/AuthCardWrapper.module';
+import { LoginButton } from '@/components/auth/LoginButton';
 import { Button } from '@/components/ui/Button/';
 
 export default function Home() {
