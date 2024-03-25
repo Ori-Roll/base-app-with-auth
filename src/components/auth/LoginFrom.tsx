@@ -12,6 +12,7 @@ import { Button } from '../ui/Button/Button';
 import style from './FromStyleTempMod.module.css';
 import { login } from '@/actions/login';
 import { StringInput } from '../ui/InputsUX/StringInput/StringInput';
+import { EmbeddedBanner } from '../ui/EmbeddedBanner/EmbeddedBanner';
 
 type LoginFromProps = {};
 
@@ -32,14 +33,14 @@ const LoginFrom = (props: LoginFromProps) => {
   } = form;
 
   const [isPending, startTransition] = useTransition();
-  const [error, setError] = React.useState<string | undefined>();
+  const [formError, setFormError] = React.useState<string | undefined>();
 
   const onSubmit = (data: z.infer<typeof LoginSchema>) => {
-    setError(undefined);
+    setFormError(undefined);
     startTransition(async () => {
       const response = await login(data);
       if (response?.error) {
-        setError(response?.error);
+        setFormError(response?.error);
         reset();
       }
     });
@@ -69,8 +70,13 @@ const LoginFrom = (props: LoginFromProps) => {
             {...formRegister('password')}
           />
         </InputBase>
-        {/*   //TODO: add error message component */}
-        {error && <div>{error}</div>}
+        {formError && (
+          <EmbeddedBanner
+            header={'Error'}
+            variant={'error'}
+            message={formError}
+          />
+        )}
         <Button
           className={style['submit-button-modifier']}
           asChild

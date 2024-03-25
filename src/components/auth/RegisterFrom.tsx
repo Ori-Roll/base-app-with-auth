@@ -12,6 +12,7 @@ import { Button } from '../ui/Button/Button';
 import { StringInput } from '../ui/InputsUX/StringInput/StringInput';
 import style from './FromStyleTempMod.module.css';
 import { register } from '@/actions/register';
+import { EmbeddedBanner } from '../ui/EmbeddedBanner/EmbeddedBanner';
 
 type RegisterFromProps = {};
 
@@ -33,17 +34,17 @@ const RegisterFrom = (props: RegisterFromProps) => {
   } = form;
 
   const [isPending, startTransition] = useTransition();
-  const [error, setError] = React.useState<string | undefined>();
+  const [formError, setFormError] = React.useState<string | undefined>();
   const [successMessage, setSuccessMessage] = React.useState<
     string | undefined
   >();
 
   const onSubmit = (data: z.infer<typeof RegisterSchema>) => {
-    setError(undefined);
+    setFormError(undefined);
     startTransition(async () => {
       const response = await register(data);
       if (response?.error) {
-        setError(response?.error);
+        setFormError(response?.error);
         reset();
         return;
       }
@@ -83,10 +84,15 @@ const RegisterFrom = (props: RegisterFromProps) => {
             {...formRegister('password')}
           />
         </InputBase>
-
-        {/*   //TODO: add error message component */}
-        {error && <div>{error}</div>}
-        {!!successMessage && <div>{successMessage}</div>}
+        {(formError || !!successMessage) && (
+          <EmbeddedBanner
+            header={formError ? 'Error' : 'Success!'}
+            variant={formError ? 'error' : 'confirmation'}
+            message={
+              ((formError || successMessage) && formError) || successMessage
+            }
+          />
+        )}
         <Button
           className={style['submit-button-modifier']}
           asChild
