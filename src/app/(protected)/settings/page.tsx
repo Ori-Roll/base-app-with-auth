@@ -13,7 +13,7 @@ const Settings = async (props: SettingsProps) => {
       <h1>Settings</h1>
       <h4>Welcome authenticated man</h4>
       <p>here you can sign out</p>
-      <h5>{JSON.stringify(session) ?? 'NO user'}</h5>
+      <h5>{JSON.stringify(session, null, 4) ?? 'NO user'}</h5>
       <form
         action={async () => {
           'use server';
