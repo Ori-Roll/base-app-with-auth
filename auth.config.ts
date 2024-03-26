@@ -6,12 +6,17 @@ import { LoginSchema } from '@/schemas';
 import type { NextAuthConfig } from 'next-auth';
 import { getUserByEmail } from '@/data/user';
 import GitHub from 'next-auth/providers/github';
+import Google from 'next-auth/providers/google';
 
 export default {
   providers: [
     GitHub({
       clientId: process.env.CLIENT_GITHUB_ID,
       clientSecret: process.env.CLIENT_GITHUB_SECRET,
+    }),
+    Google({
+      clientId: process.env.CLIENT_GOOGLE_ID,
+      clientSecret: process.env.CLIENT_GOOGLE_SECRET,
     }),
     Credentials({
       authorize: async (credentials) => {
