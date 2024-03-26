@@ -7,7 +7,7 @@ type SettingsProps = {};
 
 const Settings = async (props: SettingsProps) => {
   const session = await auth();
-  console.log('session', session);
+
   return (
     <div>
       <h1>Settings</h1>

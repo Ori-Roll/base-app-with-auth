@@ -15,10 +15,8 @@ export default {
     }),
     Credentials({
       authorize: async (credentials) => {
-        console.log('In authorize');
         const validatedFields = LoginSchema.safeParse(credentials);
         if (validatedFields.success) {
-          console.log('!autho: validatedFields');
           const { email, password } = validatedFields.data;
           const user = await getUserByEmail(email);
 
@@ -27,7 +25,6 @@ export default {
           }
 
           const passwordsMatch = await bcrypt.compare(password, user.password);
-          console.log('!autho: passwordsMatch');
           if (passwordsMatch) return user;
         }
         return null;

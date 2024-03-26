@@ -12,7 +12,6 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values);
 
   if (!validatedFields.success) {
-    console.log('error ', validatedFields.error);
     return { error: 'Invalid email or password' };
   }
 
