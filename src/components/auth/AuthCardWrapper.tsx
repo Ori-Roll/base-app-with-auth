@@ -35,8 +35,14 @@ export const AuthCardWrapper = (props: AuthCardWrapperProps) => {
         <AuthHeader label={headerLabel} />
       </CardHeader>
       <CardContent>{children}</CardContent>
-      <AuthHeader label="Or with" />
-      <CardFooter>{showSocial && <Social />}</CardFooter>
+      {showSocial && (
+        <>
+          <AuthHeader label="Or with" />
+          <CardFooter>
+            <Social />
+          </CardFooter>
+        </>
+      )}
       {/* TODO: This should be in footer (and footer should be flex column with change to social buttons flex ) */}
       <Link href={bottomOptionHref} className={styles['no-account-btn']}>
         {bottomOptionButtonLabel}
