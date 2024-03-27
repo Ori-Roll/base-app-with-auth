@@ -39,7 +39,7 @@ const RegisterFrom = (props: RegisterFromProps) => {
     string | undefined
   >();
 
-  const onSubmit = (data: z.infer<typeof RegisterSchema>) => {
+  const onSubmitForm = (data: z.infer<typeof RegisterSchema>) => {
     setFormError(undefined);
     startTransition(async () => {
       const response = await register(data);
@@ -59,7 +59,7 @@ const RegisterFrom = (props: RegisterFromProps) => {
       bottomOptionHref="/auth/login"
       showSocial
     >
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmitForm)}>
         <InputHeader size="double">Your name</InputHeader>
         <InputBase size="double" errorMessage={errors.name?.message}>
           <StringInput

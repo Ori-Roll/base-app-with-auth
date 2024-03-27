@@ -35,7 +35,7 @@ const LoginFrom = (props: LoginFromProps) => {
   const [isPending, startTransition] = useTransition();
   const [formError, setFormError] = React.useState<string | undefined>();
 
-  const onSubmit = (data: z.infer<typeof LoginSchema>) => {
+  const onSubmitForm = (data: z.infer<typeof LoginSchema>) => {
     setFormError(undefined);
     startTransition(async () => {
       const response = await login(data);
@@ -53,7 +53,7 @@ const LoginFrom = (props: LoginFromProps) => {
       bottomOptionHref="/auth/register"
       showSocial
     >
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmitForm)}>
         <InputHeader size="double">Email</InputHeader>
         <InputBase size="double" errorMessage={errors.email?.message}>
           <StringInput
