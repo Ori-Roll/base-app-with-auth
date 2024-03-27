@@ -11,6 +11,27 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  pages: {
+    error: '/auth/error',
+    signIn: '/auth/login',
+  },
+  events: {
+    linkAccount: async ({ user: { id } }) => {
+      console.log('linkAccount user id is ', id);
+      try {
+        const res = await db.user.update({
+          where: {
+            id,
+          },
+          data: {
+            emailVerified: new Date(),
+          },
+        });
+      } catch (error) {
+        console.error('linkAccount error', error); //TODO: This should be logged to a log service
+      }
+    },
+  },
   callbacks: {
     // signIn: async ({ user }) => {
     //   const existingUser = await getUserById(user.id);
