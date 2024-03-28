@@ -4,3 +4,9 @@
   margin-top: calc(var(--base-size-2) + var(--base-size-1));
   border: none;
 }
+
+.forgot-password {
+  display: flex;
+  justify-content: flex-end;
+  font-size: var(--base-size-2);
+}

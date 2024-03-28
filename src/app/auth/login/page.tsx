@@ -1,10 +1,10 @@
-import LoginFrom from '@/components/auth/LoginFrom';
+import LoginForm from '@/components/auth/LoginForm';
 import React from 'react';
 
 type LoginPageProps = {};
 
 const LoginPage = (props: LoginPageProps) => {
-  return <LoginFrom />;
+  return <LoginForm />;
 };
 
 export default LoginPage;
