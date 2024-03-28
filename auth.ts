@@ -33,14 +33,13 @@ export const {
     },
   },
   callbacks: {
-    // signIn: async ({ user }) => {
-    //   const existingUser = await getUserById(user.id);
-    //   if (!existingUser || !existingUser.emailVerified) {
-    //     return false;
-    //   }
-
-    //   return true;
-    // },
+    signIn: async ({ user, account }) => {
+      // Allow sign in if the account is Oauth or if using "credentials" and the email is verified
+      if (account?.provider !== 'credentials') return true;
+      const existingUser = await getUserById(user.id);
+      if (!existingUser?.emailVerified) return false;
+      return true;
+    },
     session: async ({ token, session }) => {
       if (token.sub && session.user) {
         session.user.id = token.sub;
