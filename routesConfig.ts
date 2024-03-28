@@ -3,7 +3,7 @@
  * @type {string[]}
  */
 
-export const publicRoutes = ['/'];
+export const publicRoutes = ['/', '/auth/new-verification'];
 
 /**
  * These are authentication routes
@@ -15,8 +15,7 @@ export const authRoutes = [
   '/auth/login',
   '/auth/register',
   '/auth/error',
-  '/auth/forgot-password',
-  '/auth/reset-password',
+  '/auth/reset',
 ];
 
 /**

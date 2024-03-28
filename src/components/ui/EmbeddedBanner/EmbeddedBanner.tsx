@@ -10,7 +10,7 @@ type EmbeddedBannerVariant =
 type EmbeddedBannerProps = React.HTMLAttributes<HTMLDivElement> & {
   variant: EmbeddedBannerVariant;
   message?: string;
-  header: string;
+  header?: string;
 };
 
 const variantClassMap: Record<EmbeddedBannerVariant, string> = {
