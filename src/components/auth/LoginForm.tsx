@@ -13,10 +13,11 @@ import style from './FromStyleTempMod.module.css';
 import { login } from '@/actions/login';
 import { StringInput } from '../ui/InputsUX/StringInput/StringInput';
 import { EmbeddedBanner } from '../ui/EmbeddedBanner/EmbeddedBanner';
+import Link from 'next/link';
 
-type LoginFromProps = {};
+type LoginFormProps = {};
 
-const LoginFrom = (props: LoginFromProps) => {
+const LoginForm = (props: LoginFormProps) => {
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -33,15 +34,24 @@ const LoginFrom = (props: LoginFromProps) => {
   } = form;
 
   const [isPending, startTransition] = useTransition();
-  const [formError, setFormError] = React.useState<string | undefined>();
+  const [formErrorMessage, setFormErrorMessage] = React.useState<
+    string | undefined
+  >();
+  const [formSuccessMessage, setFormSuccessMessage] = React.useState<
+    string | undefined
+  >();
 
   const onSubmitForm = (data: z.infer<typeof LoginSchema>) => {
-    setFormError(undefined);
+    setFormErrorMessage(undefined);
+    setFormSuccessMessage(undefined);
     startTransition(async () => {
       const response = await login(data);
       if (response?.error) {
-        setFormError(response?.error);
+        setFormErrorMessage(response?.error);
         reset();
+      }
+      if (response?.success) {
+        setFormSuccessMessage(response.success);
       }
     });
   };
@@ -70,11 +80,20 @@ const LoginFrom = (props: LoginFromProps) => {
             {...formRegister('password')}
           />
         </InputBase>
-        {formError && (
+        <Link className={style['forgot-password']} href="/auth/reset">
+          Forgot password?
+        </Link>
+        {formErrorMessage && (
           <EmbeddedBanner
             header={'Error'}
             variant={'error'}
-            message={formError}
+            message={formErrorMessage}
+          />
+        )}
+        {formSuccessMessage && (
+          <EmbeddedBanner
+            variant={'confirmation'}
+            message={formSuccessMessage}
           />
         )}
         <Button
@@ -84,10 +103,10 @@ const LoginFrom = (props: LoginFromProps) => {
           variant="secondary"
           disabled={!!Object.keys(errors).length || isPending}
         >
-          {!isPending ? (
-            <input type="submit" value="Log in" />
-          ) : (
+          {isPending ? (
             <div>loading...</div>
+          ) : (
+            <input type="submit" value="Log in" />
           )}
         </Button>
       </form>
@@ -95,4 +114,4 @@ const LoginFrom = (props: LoginFromProps) => {
   );
 };
 
-export default LoginFrom;
+export default LoginForm;
