@@ -1,0 +1,30 @@
+.error-banner {
+  background-color: var(--theme-color-destructive);
+  color: var(--theme-color-destructive-foreground);
+}
+.warning-banner {
+  background-color: var(--theme-color-accent);
+  color: var(--theme-color-accent-foreground);
+}
+.notification-banner {
+  background-color: var(--theme-color-primary);
+  color: var(--theme-color-primary-foreground);
+}
+.confirmation-banner {
+  background-color: var(--theme-color-primary);
+  color: var(--theme-color-primary-foreground);
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: var(--base-size-2);
+  border-radius: var(--base-size-0);
+  margin: var(--base-size-2) 0 0;
+  font-size: var(--base-size-2);
+  gap: var(--base-size-1);
+}
+
+.header {
+  font-weight: 600;
+}

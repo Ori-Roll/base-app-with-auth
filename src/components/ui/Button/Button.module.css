@@ -1,0 +1,109 @@
+/* TODO: Move to theme file */
+.color-theme {
+  --color-primary: #eaeaea;
+  --color-primary-foreground: #6b6b6b;
+  --color-destructive: #f44336;
+  --color-destructive-foreground: #ffffff;
+  --color-secondary: #000000;
+  --color-secondary-foreground: #ffffff;
+  --color-accent: #4caf50;
+  --color-accent-foreground: #ffffff;
+  --color-background: #ffffff;
+  --color-input: #e0e0e0;
+}
+
+.default {
+  /* background-color: var(--color-primary); */
+  color: var(--color-primary-foreground);
+  box-shadow: 0 2px 4px 0 rgb(237, 237, 237);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ababab;
+  cursor: pointer;
+  /* border-radius: var(--base-size-0); */
+}
+
+.destructive {
+  background-color: var(--color-destructive);
+  color: var(--color-destructive-foreground);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.outline {
+  border: 1px solid var(--color-input);
+  background-color: var(--color-background);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-secondary-foreground);
+  box-shadow: 0 2px 4px 0 rgb(237, 237, 237);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ababab;
+  cursor: pointer;
+}
+
+.ghost {
+  background-color: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+
+.size-default {
+  min-height: var(--base-size-2);
+  width: var(--base-size-8);
+}
+
+.size-small {
+  min-height: var(--base-size-1);
+  width: var(--base-size-2);
+}
+
+.size-large {
+  min-height: var(--base-size-4);
+  width: var(--base-size-16);
+}
+
+.size-icon {
+  height: 2.25rem;
+  width: 2.25rem;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* 
+const buttonVariants = cva(
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-4 py-2",
+        sm: "h-8 rounded-md px-3 text-xs",
+        lg: "h-10 rounded-md px-8",
+        icon: "h-9 w-9",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+) */

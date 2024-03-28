@@ -1,0 +1,17 @@
+.wrapper {
+  background-color: #f3f3f3;
+  border: 1px solid #a5a5a5;
+}
+
+.header {
+  font-weight: 700;
+}
+
+.no-account-btn {
+  font-size: var(--base-size-2);
+  cursor: pointer;
+  text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  padding: var(--base-size-2) 0;
+}

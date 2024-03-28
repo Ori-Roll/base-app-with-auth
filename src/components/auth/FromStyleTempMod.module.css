@@ -1,0 +1,12 @@
+.submit-button-modifier {
+  width: 100%;
+  padding: var(--base-size-2);
+  margin-top: calc(var(--base-size-2) + var(--base-size-1));
+  border: none;
+}
+
+.forgot-password {
+  display: flex;
+  justify-content: flex-end;
+  font-size: var(--base-size-2);
+}

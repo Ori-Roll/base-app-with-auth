@@ -1,0 +1,6 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-1);
+  padding: var(--base-size-4);
+}
